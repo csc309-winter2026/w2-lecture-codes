@@ -1,0 +1,72 @@
+<html>
+
+<head>
+  <style>
+    .container {
+      display: grid;
+      grid-template-columns: 100px 100px 100px;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .container div {
+      background-color: lightblue;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .container .selected {
+      background-color: orange;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    // Has no impact as it runs before the h1 is parsed
+    document.querySelector('h1').innerHTML = "First text"
+  </script>
+
+  <h1>Welcome to My Website</h1>
+  <p>This is a sample HTML file.</p>
+
+  <button>Click Me!</button>
+  <div class="container">
+    <div class="selected">1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+  </div>
+
+  <script>
+    const heading = document.querySelector('h1');
+    setTimeout(() => {
+      heading.innerText = "HELLO WORLD"
+    }, 2000);
+
+    heading.onmouseover = () => {
+      heading.style.color = "red";
+    };
+    heading.onmouseout = () => {
+      heading.style.color = "black";
+    };
+
+    const button = document.querySelector('button');
+
+    button.onclick = () => {
+      var selectedDiv = document.querySelector('.container .selected');
+      selectedDiv.classList.remove('selected');
+      var nextDiv = selectedDiv.nextElementSibling;
+      if (nextDiv) {
+        nextDiv.classList.add('selected');
+      } else {
+        document.querySelector('.container div').classList.add('selected');
+      }
+    }
+  </script>
+</body>
+
+</html>
